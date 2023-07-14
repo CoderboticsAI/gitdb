@@ -10,6 +10,11 @@ import os
 import sys
 import zlib
 
+from gitdb.const import NULL_BYTE, BYTE_SPACE
+from gitdb.utils.encoding import force_bytes
+from mmap import mmap
+from zlib import decompressobj
+
 from gitdb.fun import (
     msb_size,
     stream_copy,
@@ -25,9 +30,6 @@ from gitdb.util import (
     write,
     close,
 )
-
-from gitdb.const import NULL_BYTE, BYTE_SPACE
-from gitdb.utils.encoding import force_bytes
 
 has_perf_mod = False
 try:
